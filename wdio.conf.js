@@ -20,7 +20,7 @@ exports.config = {
     // directory is where your package.json resides, so `wdio` will be called from there.
     //
     specs: [
-        './test/specs/**/*.js'
+        './features/**/*.feature'
     ],
     // Patterns to exclude.
     exclude: [
@@ -107,7 +107,7 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver'],
+    services: ['chromedriver','selenium-standalone','docker'],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
@@ -115,7 +115,7 @@ exports.config = {
     //
     // Make sure you have the wdio adapter package for the specific framework installed
     // before running any tests.
-    framework: 'mocha',
+    framework: 'cucumber',
     //
     // The number of times to retry the entire specfile when it fails as a whole
     // specFileRetries: 1,
@@ -123,15 +123,26 @@ exports.config = {
     // Test reporter for stdout.
     // The only one supported by default is 'dot'
     // see also: https://webdriver.io/docs/dot-reporter.html
-    reporters: ['spec'],
- 
-    //
-    // Options to be passed to Mocha.
-    // See the full list at http://mochajs.org/
-    mochaOpts: {
-        ui: 'bdd',
-        timeout: 60000
+    reporters: ['json','cucumber','html'],
+ //
+    // If you are using Cucumber you need to specify the location of your step definitions.
+    cucumberOpts: {
+        require: ['./features/step-definitions'],        // <string[]> (file/dir) require files before executing features
+        backtrace: false,   // <boolean> show full backtrace for errors
+        requireModule: [],  // <string[]> ("extension:module") require files with the given EXTENSION after requiring MODULE (repeatable)
+        dryRun: false,      // <boolean> invoke formatters without executing steps
+        failFast: false,    // <boolean> abort the run on first failure
+        format: ['pretty'], // <string[]> (type[:path]) specify the output format, optionally supply PATH to redirect formatter output (repeatable)
+        colors: true,       // <boolean> disable colors in formatter output
+        snippets: true,     // <boolean> hide step definition snippets for pending steps
+        source: true,       // <boolean> hide source uris
+        profile: [],        // <string[]> (name) specify the profile to use
+        strict: false,      // <boolean> fail if there are any undefined or pending steps
+        tagExpression: '',  // <string> (expression) only execute the features or scenarios with tags matching the expression
+        timeout: 60000,     // <number> timeout for step definitions
+        ignoreUndefinedDefinitions: false, // <boolean> Enable this config to treat undefined definitions as warnings.
     },
+    
     //
     // =====
     // Hooks
@@ -172,41 +183,36 @@ exports.config = {
     // beforeCommand: function (commandName, args) {
     // },
     /**
-     * Hook that gets executed before the suite starts
-     * @param {Object} suite suite details
+     * Runs before a Cucumber feature
      */
-    // beforeSuite: function (suite) {
+    // beforeFeature: function (uri, feature, scenarios) {
     // },
     /**
-     * Function to be executed before a test (in Mocha/Jasmine) starts.
+     * Runs before a Cucumber scenario
      */
-    // beforeTest: function (test, context) {
+    // beforeScenario: function (uri, feature, scenario, sourceLocation) {
     // },
     /**
-     * Hook that gets executed _before_ a hook within the suite starts (e.g. runs before calling
-     * beforeEach in Mocha)
+     * Runs before a Cucumber step
      */
-    // beforeHook: function (test, context) {
+    // beforeStep: function (uri, feature, stepData, context) {
     // },
     /**
-     * Hook that gets executed _after_ a hook within the suite starts (e.g. runs after calling
-     * afterEach in Mocha)
+     * Runs after a Cucumber step
      */
-    // afterHook: function (test, context, { error, result, duration, passed, retries }) {
+    // afterStep: function (uri, feature, { error, result, duration, passed }, stepData, context) {
     // },
     /**
-     * Function to be executed after a test (in Mocha/Jasmine).
+     * Runs after a Cucumber scenario
      */
-    // afterTest: function(test, context, { error, result, duration, passed, retries }) {
+    // afterScenario: function (uri, feature, scenario, result, sourceLocation) {
     // },
-
-
     /**
-     * Hook that gets executed after the suite has ended
-     * @param {Object} suite suite details
+     * Runs after a Cucumber feature
      */
-    // afterSuite: function (suite) {
+    // afterFeature: function (uri, feature, scenarios) {
     // },
+    
     /**
      * Runs after a WebdriverIO command gets executed
      * @param {String} commandName hook command name
