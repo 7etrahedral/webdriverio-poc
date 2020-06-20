@@ -6,10 +6,12 @@ exports.config = {
     //
     // WebdriverIO allows it to run your tests in arbitrary locations (e.g. locally or
     // on a remote machine).
-    runner: 'local',
+    // runner: 'local',
     //
     // Override default path ('/wd/hub') for chromedriver service.
-    path: '/',
+    hostname: 'localhost',
+    port: 4444,
+    path: '/wd/hub',
     //
     // ==================
     // Specify Test Files
@@ -49,6 +51,7 @@ exports.config = {
     // https://docs.saucelabs.com/reference/platforms-configurator
     //
     capabilities: [
+        // Chrome Browser
         {
             // maxInstances can get overwritten per capability. So if you have an in-house Selenium
             // grid with only 5 firefox instances available you can make sure that not more than
@@ -56,16 +59,28 @@ exports.config = {
             maxInstances: 5,
             //
             browserName: 'chrome',
+            'selenoid:options': {
+                version: '83.0',
+                enableVNC: true,
+                enableVideo: false
+            }
 
             // If outputDir is provided WebdriverIO can capture driver session logs
             // it is possible to configure which logTypes to include/exclude.
             // excludeDriverLogs: ['*'], // pass '*' to exclude all driver session logs
             // excludeDriverLogs: ['bugreport', 'server'],
-            },
-        {
-            maxInstances: 5,
-            browserName: 'firefox',
-        }
+        },
+
+        // Firefox browser
+        // {
+        //     maxInstances: 5,
+        //     browserName: 'firefox',
+        //     'selenoid:options': {
+        //         version: '77.0',
+        //         enableVNC: true,
+        //         enableVideo: false
+        //     }
+        // }
     ],
     //
     // ===================
@@ -114,12 +129,9 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['chromedriver','geckodriver'],
 
-    // OPTIONAL: Provide custom port for geckodriver.
-    // geckoDriverRandomPort must be set to false to use this port and maxInstances must be set to 1.
-    // Default: 4444
-    port: 4444,
+    // Comment this line below for docker or remote browser
+    // services: ['chromedriver','geckodriver'],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
