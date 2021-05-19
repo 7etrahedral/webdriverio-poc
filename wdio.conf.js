@@ -54,8 +54,8 @@ exports.config = {
         // 5 instances get started at a time.
         maxInstances: 5,
         //
-        browserName: 'chrome',
-        // browserName: 'firefox',
+        // browserName: 'chrome',
+        browserName: 'firefox',
 
         // If outputDir is provided WebdriverIO can capture driver session logs
         // it is possible to configure which logTypes to include/exclude.
@@ -109,8 +109,8 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    // services: ['geckodriver'],
-    services: ['chromedriver'],
+    services: ['geckodriver'],
+    // services: ['chromedriver'],
 
     // OPTIONAL: Provide custom port for geckodriver.
     // geckoDriverRandomPort must be set to false to use this port and maxInstances must be set to 1.

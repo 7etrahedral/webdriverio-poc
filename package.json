@@ -18,7 +18,7 @@
     "@wdio/spec-reporter": "^6.1.14",
     "@wdio/sync": "^6.1.14",
     "chromedriver": "^90.0.0",
-    "geckodriver": "^1.19.1",
+    "geckodriver": "^2.0.0",
     "wdio-chromedriver-service": "^6.0.3",
     "wdio-cucumber-reporter": "0.0.2",
     "wdio-geckodriver-service": "^1.0.3",
