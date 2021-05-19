@@ -22,6 +22,6 @@
     "wdio-chromedriver-service": "^6.0.3",
     "wdio-cucumber-reporter": "0.0.2",
     "wdio-geckodriver-service": "^1.0.3",
-    "wdio-json-reporter": "^2.0.0"
+    "wdio-json-reporter": "^0.4.0"
   }
 }
