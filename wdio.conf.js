@@ -9,6 +9,8 @@ exports.config = {
     runner: 'local',
     //
     // Override default path ('/wd/hub') for chromedriver service.
+    hostname: 'localhost',
+    port: 8080,
     path: '/',
     //
     // ==================
