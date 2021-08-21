@@ -9,9 +9,11 @@ exports.config = {
     // runner: 'local',
     //
     // Override default path ('/wd/hub') for chromedriver service.
-    hostname: 'localhost',
-    port: 4444,
-    path: '/wd/hub',
+    // hostname: 'localhost',
+    // port: 4444,
+    // path: '/wd/hub',
+
+    runner: 'local',
     //
     // ==================
     // Specify Test Files
@@ -57,13 +59,13 @@ exports.config = {
             // grid with only 5 firefox instances available you can make sure that not more than
             // 5 instances get started at a time.
             maxInstances: 5,
-            //
             browserName: 'chrome',
-            'selenoid:options': {
-                version: '92.0',
-                enableVNC: true,
-                enableVideo: false
-            },
+            // Selenoid Options
+            // 'selenoid:options': {
+            //     version: '92.0',
+            //     enableVNC: true,
+            //     enableVideo: false
+            // },
             acceptInsecureCerts: true,
             'goog:chromeOptions': {
                 // to run chrome headless the following flags are required
@@ -138,7 +140,7 @@ exports.config = {
     // commands. Instead, they hook themselves up into the test process.
 
     // Comment this line below for docker or remote browser
-    // services: ['chromedriver','geckodriver'],
+    services: ['chromedriver'],
     
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber
