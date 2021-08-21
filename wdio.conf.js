@@ -60,7 +60,7 @@ exports.config = {
             //
             browserName: 'chrome',
             'selenoid:options': {
-                version: '91.0',
+                version: '92.0',
                 enableVNC: true,
                 enableVideo: false
             },
